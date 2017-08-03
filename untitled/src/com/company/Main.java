@@ -10,20 +10,18 @@ by: Derrick Livingston Cushshon
 */
 package com.company;
 
-/*
-
-import java.awt.FlowLayout;
-*/
-import javax.swing.*;
-import java.awt.*;
+//JavaFX import links___________________________
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import java.util.Scanner;
+//_______________________________________________
 
-
-public class Main {
-
-
-
-
+public class Main extends Application {
 
 
     public static void main(String[] args) {
@@ -50,56 +48,57 @@ public class Main {
          username and password is valid
          */
         if (UsrName.equals(usr) & Password.equals(pwd)) {
-            gui();// This calls the gui method
+            System.out.print("You're in!");
+            launch(args); //This calls the JavaFX application
 
-
-        } else System.out.println("Wrong Username or Password");
+        } else {
+            System.out.println("Wrong Username or Password");
+        }
     }
 
 
-    //____________________________GUI______________________________________________________________________________
+
+    //Start Page_________________________________________________________________
+    @Override
+    public void start(Stage primaryStage) {
+
+//      sets the title for the window
+        primaryStage.setTitle("Solar Soft");
+        Button LogIn1 = new Button("Log In");//Creates a new button
+        Button SignUp1 = new Button("Sign Up");//Creates a new button
+
+        Button btn = new Button();//Creates a new button
+
+        btn.setText("Say 'Hello World'");
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Hello World!");
+            }
+        });
+
+        StackPane root = new StackPane();//layout manager
+
+        root.getChildren().add(btn);//adds button to the screen
+        root.getChildren().add(LogIn1);//adds button to the screen
+        root.getChildren().add(SignUp1);//adds button to the screen
+
+        primaryStage.setScene(new Scene(root, 1000, 800));//sets window dimensions
 
 
-
-    public static JFrame f; //creates a variable "f" for the frame
-    public static JPanel p; //creates a variable "p" for the panel
-    public static JButton SignIn; //creates a variable "SignIn" for the button
-    public static JLabel lab0; //creates a variable "lab0" for the label
-    public static JTextField Username1;
-    public static JPasswordField Password0;
-
-
-    public Main(){
-        gui();
+        primaryStage.show();//This creates the window
     }
 
 
-    /* These are the actual gui elements of the software_______________________________ */
-    public static void gui() {
-
-        f = new JFrame("Solar Soft");//creates the frame and adds the title
-        f.setVisible(true);//makes the frame visible
-        f.setSize(1000,800); //window size
-        f.setLocationRelativeTo(null); //makes window open in the center of the screen
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//sets a default close action
-        f.setTitle("Solar Soft"); //changes title
-        f.setResizable(false); //changes it's ability to be resized
-
-        p = new JPanel(); //Creates a new panel
-        p.setBackground(Color.lightGray); //Sets the background of that panel
-
-        SignIn = new JButton("Sign in"); //creates a new button
-        lab0 = new JLabel("Please sign in to get started."); //creates a new label
-        Username1 = new JTextField("Username");
-        Password0 = new JPasswordField("Password");
-
-        p.add(Username1);
-        p.add(Password0);
-        p.add(SignIn);
-        p.add(lab0);
-        f.add(p,BorderLayout.SOUTH);
 
 
 
-    }
+
+
+
+
+
+
+
 }
